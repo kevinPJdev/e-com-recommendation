@@ -13,9 +13,6 @@ st.set_page_config(page_title="RFM Analysis", page_icon="📈")
 st.markdown("# RFM Anlaysis")
 st.sidebar.header("RFM Anlaysis")
 
-selectedOption = st.selectbox("Select a Customer ID", (12346, 12347, 12348))
-st.button("Submit")
-
 data = pd.read_csv("/Users/shobhanabhushan/streamlit_recommender/pages/Online_Retail.csv")
 
 data["InvoiceDate"] = pd.to_datetime(data["InvoiceDate"])
@@ -121,7 +118,9 @@ final_data['Segment'] = final_data['rfm'].apply(get_group)
 
 data_customer_segments = final_data[['CustomerId', 'Segment']]
 
-st.write(data_customer_segments.head())
+#st.write(data_customer_segments.head())
+
+selectedOption = st.selectbox("Select a Customer ID", data_customer_segments['CustomerId'].head(10).tolist())
 
 segment_group = data_customer_segments.groupby('Segment').count()
 segment_group = segment_group.reset_index()
@@ -129,8 +128,19 @@ segment_group.columns = ['Segment', 'Count']
 segment_group.head()
 
 def findCustomerSegmentForID(): 
-    df = segment_group[segment_group['CustomerId'] == selectedOption]
-    st.write(df)
+    df_row = final_data[final_data['CustomerId'] == selectedOption]
+    numberOfPurchasesMade = df_row.iloc[0]['freq']
+    avgPurchase = df_row.iloc[0]['monetary']
+    duration = df_row.iloc[0]['recency']
+    segment = df_row.iloc[0]['Segment']
+
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Customer ID", selectedOption)
+    col2.metric("Segment", segment)
+    col3.metric("Total Purchases", numberOfPurchasesMade)
+    col1.metric("Days since last purchase", duration)
+    col2.metric("Average Purchase Amount", avgPurchase)
+
 
 findCustomerSegmentForID()
 
