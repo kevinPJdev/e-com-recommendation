@@ -13,18 +13,22 @@ st.sidebar.success("Select a demo above.")
 
 st.markdown(
     """
-    Streamlit is an open-source app framework built specifically for
-    Machine Learning and Data Science projects.
-    **👈 Select a demo from the sidebar** to see some examples
-    of what Streamlit can do!
-    ### Want to learn more?
-    - Check out [streamlit.io](https://streamlit.io)
-    - Jump into our [documentation](https://docs.streamlit.io)
-    - Ask a question in our [community
-        forums](https://discuss.streamlit.io)
-    ### See more complex demos
-    - Use a neural net to [analyze the Udacity Self-driving Car Image
-        Dataset](https://github.com/streamlit/demo-self-driving)
-    - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
+    Product recommendations during online shopping help increase average order value, 
+    click-through and conversions from email by intelligently predicting what your customers 
+    are likely to buy next. With the help of big data and data mining, this project focuses
+     on building an online product recommendation engine which predicts products a customer 
+     is most likely to buy based on the customer’s most recent purchase. In addtion, this project 
+     performs customer market segmentation based on customer purchase history.
+
+    **👈 Select a page from the sidebar** to see our app's usecases.
+    
+    ####ß Resources Used
+    - [UCI Dataset](https://archive.ics.uci.edu/ml/datasets/online+retail) 
+    - [streamlit.io](https://streamlit.io)
+
+    #### Authors
+    - [Kevin Jacob](https://github.com/kevinPJdev)
+    - [Suparno Bhatta](https://github.com/streamlit/demo-uber-nyc-pickups)
+    - [Harmanjot Singh Suri]
 """
 )
