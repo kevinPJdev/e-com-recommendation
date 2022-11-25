@@ -22,7 +22,7 @@ st.markdown(
 
     **👈 Select a page from the sidebar** to see our app's usecases.
     
-    ####ß Resources Used
+    #### Resources Used
     - [UCI Dataset](https://archive.ics.uci.edu/ml/datasets/online+retail) 
     - [streamlit.io](https://streamlit.io)
 

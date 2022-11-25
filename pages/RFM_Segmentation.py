@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 import calendar # used to convert numbers between 1 and 12 to month names
+import matplotlib.pyplot as plt # creating subplots and formating figures
 
 import warnings        
 warnings.filterwarnings("ignore") # ignores warnings
@@ -10,8 +11,35 @@ warnings.filterwarnings("ignore") # ignores warnings
 
 st.set_page_config(page_title="RFM Analysis", page_icon="📈")
 
-st.markdown("# RFM Anlaysis")
-st.sidebar.header("RFM Anlaysis")
+st.markdown("""# RFM Analysis
+RFM is a method used for analyzing customer value. 
+It is commonly used in database marketing and direct marketing and 
+has received particular attention in retail and professional services industries.
+""")
+
+st.sidebar.header("RFM Analysis")
+st.sidebar.markdown("""
+    ### Based on rfm column we can segment customers based on a simple rule:
+
+- Best → RFM = 144
+
+- Almost Lost → RFM = 344
+
+- Lost Big Spenders → RFM = 444
+
+- Lost Cheap → RFM = 441
+
+- Loyal → RFM = ?4?
+
+- Big Spenders → RFM = ??4
+
+- Normal → RFM dosen't belong to any top groups
+
+Note 1: ? could be 1 or 2 or 3.
+
+Note 2: If a rfm belongs to more than one group, it belongs the group with lowest order.
+
+""")
 
 data = pd.read_csv("/Users/shobhanabhushan/streamlit_recommender/pages/Online_Retail.csv")
 
@@ -118,7 +146,6 @@ final_data['Segment'] = final_data['rfm'].apply(get_group)
 
 data_customer_segments = final_data[['CustomerId', 'Segment']]
 
-#st.write(data_customer_segments.head())
 
 selectedOption = st.selectbox("Select a Customer ID", data_customer_segments['CustomerId'].head(10).tolist())
 
@@ -144,6 +171,12 @@ def findCustomerSegmentForID():
 
 findCustomerSegmentForID()
 
-#fig, ax = plt.subplots(figsize=(12, 6), dpi=100)
+plt.style.use('dark_background')
+
+fig, ax = plt.subplots(figsize=(12, 6), dpi=100)
 #plt.bar(segment_group['Segment'], segment_group['Count'], color='orangered', alpha=0.8);
+plt.title("Customer Segments")
+ax.bar(segment_group['Segment'], segment_group['Count'])
+
+st.pyplot(fig)
 
