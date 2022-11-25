@@ -44,6 +44,8 @@ df_uk= df[df["Country"]=="Germany"]
 df_uk.head()
 
 selectedOption = st.selectbox("Select the product purchased", df_uk.head(5)['StockCode'].tolist())
+productName = df_uk[df_uk['StockCode'] == selectedOption].head(1).iloc[0]['Description']
+st.write(productName)
 rec_count = st.selectbox("Select the number of recommendations you would like", (1,2,3,4,5))
 
 def outlier_thresholds(dataframe, variable):
